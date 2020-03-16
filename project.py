@@ -288,7 +288,7 @@ def flow(a,omega,mu,rho,waves,dp_dz,animated):
 
     #TODO: set x_limit for all other axes
     # 2 cycles
-    times = np.linspace(0,2*T,1000)
+    times = np.linspace(0,5*T,1000)
 
     # Set Omega, Lambda, Zeta, C_n values, Phi_n values, and the constant coefficient out front
     r_a = np.linspace(-1,1)
@@ -347,12 +347,13 @@ def flow(a,omega,mu,rho,waves,dp_dz,animated):
         return line,
     def frames_gen():
         # 100 frames from 0 to 2 periods.
-        T = 1/(omega/(2*np.pi))
-        for frame in np.linspace(0,2*T,100):
+        T = 1/(omega/(5*np.pi))
+        for frame in np.linspace(0,5*T,200):
             yield frame
-    # 100 frames from 0 to 2 periods.  100 frames with 75ms per frame we have a 7.5s long animation with a 1s delay at the end
+    # 100 frames that go to 3*T seconds.  (3*T)/100 is interval in seconds, times by 1000 to get interval in seconds
+    real_interval = ((5*T)/200)*1000
     ani = animation.FuncAnimation(
-            fig, animate, interval=75, blit=False, frames=frames_gen,repeat_delay=1000)
+            fig, animate, interval=real_interval, blit=False, frames=frames_gen,repeat_delay=1000)
     vid = ani.to_html5_video()
     # Change width to 100% and remove height
     vid = re.sub(r'width="\d+"',r'width="100%"',vid)
