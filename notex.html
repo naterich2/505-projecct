@@ -1,0 +1,95 @@
+<p>Velocity profiles, Flow rate, and Wall shear stress can be calculated for pulsatile flow by separating the steady and oscillatory profiles:</p>
+<h1 class="unnumbered" id="steady">Steady </h1>
+<h4 id="velocity">Velocity</h4>
+<p>For steady flow in a tube we can make the following assumptions:</p>
+<ol class="incremental">
+<li><p><span class="math inline"><em>v</em><sub><em>z</em></sub> = <em>f</em>(<em>r</em>)</span></p></li>
+<li><p><span class="math inline"><em>v</em><sub><em>r</em></sub> = <em>v</em><sub><em>θ</em></sub> = 0</span></p></li>
+<li><p>Constant viscosity (newtonian), and density</p></li>
+<li><p><span class="math inline"><em>p</em> = <em>f</em>(<em>z</em>)</span></p></li>
+<li><p><span class="math inline"><em>g</em><sub><em>z</em></sub> = 0</span></p></li>
+</ol>
+<p>Under these assumptions, the <span class="math inline"><em>z</em></span> component of the cylindrical Navier-Stokes equations can be reduced and solved with the following boundary conditions:</p>
+<ol class="incremental">
+<li><p><span class="math inline">$\displaystyle\left.\frac{d v_z}{d r}\right|_{r=0} \ne \infty$</span></p></li>
+<li><p><span class="math inline"><em>v</em><sub><em>z</em></sub>(<em>r</em> = <em>a</em>) = 0</span></p></li>
+</ol>
+<p><br /><span class="math display">$$\begin{aligned}
+    0 &amp;= -     \frac{d p}{dz} + \mu \left( \frac{1}{r}     \frac{d }{d r} \left(r     \frac{d v_z}{d r}\right)\right)\\
+    \frac{r}{\mu} \frac{d p}{d z} &amp;= \frac{d}{d r} \left( r \frac{d v_z}{d r} \right)\\
+    \frac{d v_z}{d r} &amp;=\frac{r}{2 \mu} \frac{d p}{d z} + \frac{c}{r} \rightarrow \textrm{BC 1: $c = 0$} \\
+    v_z &amp;= \frac{r^2}{4 \mu}     \frac{d p}{dz} + c, \ \textrm{BC 2: $v_z(r=a) = 0$}\\
+    c  &amp;= -\frac{a^2}{4 \mu}     \frac{d p}{dz} \\\end{aligned}$$</span><br /></p>
+<h4 id="flow-rate">Flow Rate</h4>
+<p>Given the above velocity profile, we can calculate the flow rate <span class="math inline"><em>Q</em></span> with: <br /><span class="math display">$$\begin{aligned}
+    Q &amp;= \int_0^a v_z(r) 2 \pi r dr\\
+     &amp;= \int_0^a \frac{a^2}{4 \mu} \frac{d p}{dz} \left(1 - \left(\frac{r}{a}\right)^2 \right) 2 \pi r dr\\
+     &amp;= \frac{2 \pi a^2}{4 \mu}\frac{d p}{dz}\int_0^a r - \frac{r^3}{a^2} dr\\
+     &amp;= \frac{2 \pi a^2}{4 \mu}\frac{d p}{dz}\left[ \frac{r^2}{2} - \frac{r^4}{4 a^2} \right]_0^a\\
+     &amp;=\frac{2 \pi a^2}{4 \mu}\frac{d p}{dz}\left( \frac{a^2}{2} - \frac{a^4}{4 a^2} \right)\\
+     &amp;=\frac{2 \pi a^4}{8 \mu}\frac{d p}{dz}\left(1 - 1/2 \right) \\
+     &amp;=\frac{ \pi a^4}{8 \mu}\frac{d p}{dz}\end{aligned}$$</span><br /></p>
+<h4 id="shear-stress">Shear Stress</h4>
+<p>We can similarly calculate shear stress from the velocity profile: <br /><span class="math display">$$\begin{aligned}
+    \tau_{rz} &amp;=2 \mu D_{rz} = 2 \mu * \frac{1}{2}\left(    \frac{\partial v_z}{\partial r}   +  \frac{\partial v_r}{dz}\right)\\
+            &amp;= \mu \left(\frac{\partial v_z(r,t)}{\partial r}\right)\\
+              &amp;= \frac{a^2}{4}\frac{d p}{dz} \frac{d}{d r} \left(1 - \frac{r^2}{a^2}\right) \\
+              &amp;= \frac{a^2}{4}     \frac{d p}{dz} \left( - \frac{2 r}{a^2}\right)\\
+    \left.\tau_{rz}\right|_{r = a} &amp;= \frac{a^2}{4}     \frac{d p}{dz} \left( - \frac{2 a}{a^2}\right)\\
+                                   &amp;= - \frac{a}{2}     \frac{d p}{dz}\end{aligned}$$</span><br /></p>
+<h1 class="unnumbered" id="oscillatory">Oscillatory</h1>
+<h4 id="velocity-1">Velocity</h4>
+<p>For unsteady flow in a tube, we can make the following assumptions:</p>
+<ol class="incremental">
+<li><p><span class="math inline"><em>v</em><sub><em>z</em></sub> = <em>f</em>(<em>r</em>, <em>t</em>)</span></p></li>
+<li><p><span class="math inline"><em>v</em><sub><em>r</em></sub> = <em>v</em><sub><em>θ</em></sub> = 0</span></p></li>
+<li><p>Constant viscosity (newtonian), and density</p></li>
+<li><p><span class="math inline"><em>p</em> = <em>f</em>(<em>z</em>, <em>t</em>)</span></p></li>
+<li><p><span class="math inline"><em>g</em><sub><em>z</em></sub> = 0</span></p></li>
+</ol>
+<p>These assumptions give us the following simplified <span class="math inline"><em>z</em></span> component of the cylindrical Navier-Stokes equations: <br /><span class="math display">$$\rho \frac{\partial v_z}{\partial t}  = -     \frac{\partial p}{\partial z} + \mu \left[    \frac{1}{r}\frac{\partial}{\partial r}\left(r     \frac{\partial v_z}{\partial r}\right)\right]$$</span><br /> If we assume the pressure gradient is a sum of sine or cosine waves and represent this as a sum of exponentials: <span class="math inline">$\frac{\partial p(z,t)}{\partial z} = p_s + p_o \sum_{n=1}^N (\cos n \omega t + i \sin n \omega t) = p_s + p_o \sum_{n=1}^N e^{i n \omega t}$</span>, where n is the harmonic of the wave. Then we can solve the governing equation separately for each harmonic and sum the terms: <br /><span class="math display">$$\begin{aligned}
+    \rho \frac{\partial v_z}{\partial t}  &amp;= -     p_o e^{i n \omega t} + \mu \left[    \frac{1}{r}\frac{\partial}{\partial r}\left(r     \frac{\partial v_z}{\partial r}\right)\right]\end{aligned}$$</span><br /> Postulating that the velocity profile <span class="math inline"><em>v</em><sub><em>z</em></sub>(<em>r</em>, <em>t</em>)</span> will follow a similar profile as the pressure gradient allows us to separate the <span class="math inline"><em>r</em></span> and <span class="math inline"><em>t</em></span> components: <span class="math inline"><em>v</em><sub><em>z</em></sub>(<em>r</em>, <em>t</em>) = <em>V</em>(<em>r</em>)<em>e</em><sup><em>i</em><em>n</em><em>ω</em><em>t</em></sup></span>. Using this separation of variables we have that:</p>
+<ul class="incremental">
+<li><p><span class="math inline">$\frac{\partial v_z}{\partial t} = i n \omega V(r) e^{i n \omega t}$</span></p></li>
+<li><p><span class="math inline">$\frac{\partial v_z}{\partial r} = \frac{d V(r)}{d r} e^{i n \omega t}$</span></p></li>
+<li><p><span class="math inline">$\frac{d}{d r} r \frac{d V(r)}{r} = \frac{d V(r)}{d r} + r \frac{d^2 V(r)}{d r}$</span></p></li>
+</ul>
+<p><br /><span class="math display">$$\begin{aligned}
+    \rho i n \omega V(r) e^{i n \omega t}  &amp;= -     p_o e^{i n \omega t} + \mu   \left[  \frac{d V(r)}{d r} + r \frac{d^2 V(r)}{d r}   \right] e^{i n \omega t} \\
+    \frac{p_0}{\mu} &amp;=\frac{d^2 V(r)}{d r^2} + \frac{1}{r} \frac{d V(r)}{d r} - \frac{\rho n i \omega V(r)}{\mu} \end{aligned}$$</span><br /> For <span class="math inline">$\Omega_n = a \sqrt{\frac{\rho n \omega}{\mu}}$</span>, this becomes: <br /><span class="math display">$$\frac{d^2 V(r)}{d r^2} + \frac{1}{r} \frac{d V(r)}{d r} - \frac{i \Omega_n^2 V(r)}{a^2} = \frac{p_0}{\mu}$$</span><br /> If we do a change of variables <span class="math inline">$\zeta = \Lambda \frac{r}{a}$</span>, then <span class="math inline">$\frac{d}{d r} = \frac{d}{d \zeta} \frac{d \zeta}{d r} = \frac{d}{d \zeta}\frac{\Lambda}{a}$</span>, and <span class="math inline">$\frac{d^2}{d r^2} = \frac{d^2}{d \zeta^2} \frac{\Lambda^2}{a^2}$</span>. If <span class="math inline">$\Lambda = \left(\frac{i - 1}{\sqrt{2}}\right) \Omega$</span>, then we get: <br /><span class="math display">$$\begin{aligned}
+    \frac{\Lambda^2}{a^2} \frac{d^2 V(\zeta)}{d \zeta^2} + \frac{\Lambda}{a \zeta}\frac{\Lambda}{a} \frac{d V(\zeta)}{d \zeta} - \frac{i \Omega_n^2 V(\zeta)}{a^2} &amp;= \frac{p_0}{\mu}\\
+    \frac{-i \Omega_n^2}{a^2} \frac{d^2 V(\zeta)}{d \zeta^2} + \frac{-i \Omega^2}{a^2}\frac{1}{ \zeta} \frac{d V(\zeta)}{d \zeta} - \frac{i \Omega^2 V(\zeta)}{a^2} &amp;= \frac{p_0}{\mu}\end{aligned}$$</span><br /> If we divide by <span class="math inline">$\frac{-i \Omega_n^2}{a^2}$</span>, then separate the solution into homogenous and particular solutions: <br /><span class="math display">$$\begin{aligned}
+    V &amp;= V_h + V_p\\
+    0 &amp;= \frac{d^2 V(\zeta)}{d \zeta^2} + \frac{1}{\zeta}\frac{d V(\zeta)}{d \zeta} +  V(\zeta) \ \textrm{($V_h$)}\\
+    0 &amp;= \zeta^2 \frac{d^2 V(\zeta)}{d \zeta^2} + \zeta\frac{d V(\zeta)}{d \zeta} +  (\zeta^2 - \alpha^2) V(\zeta)  \textrm{, Where $\alpha = 0$}\\\end{aligned}$$</span><br /> This last equation is known as Bessel’s differential equation, and has a solution of the form: <span class="math inline"><em>V</em><sub><em>h</em></sub>(<em>ζ</em>) = <em>A</em><sub><em>n</em></sub><em>J</em><sub>0</sub>(<em>ζ</em>) + <em>B</em><sub><em>n</em></sub><em>Y</em><sub>0</sub>(<em>ζ</em>)</span>, where <span class="math inline"><em>J</em><sub>0</sub></span> is the 0th order Bessel function of the 1st kind, and <span class="math inline"><em>Y</em><sub>0</sub></span> is the 0th order Bessel function of the second kind. However, <span class="math inline"><em>Y</em><sub>0</sub>(0) =  − ∞</span>, so for the solution to be finite at the center, <span class="math inline"><em>B</em><sub><em>n</em></sub> = 0</span>. <br /><span class="math display">$$\begin{aligned}
+    V(\zeta) &amp;= V_h(\zeta) + V_p(\zeta)\\
+         &amp;= A_n J_0(\zeta) + \frac{i p_o a^2}{\mu \Omega^2} \end{aligned}$$</span><br /> Our next boundary condition is that at the wall, the velocity must be 0. At the wall, <span class="math inline">$\zeta = \Lambda_n \frac{a}{a}$</span> <span class="math inline"><em>V</em>(<em>Λ</em><sub><em>n</em></sub>) = 0</span>. If we plug in this boundary condition and then substitute <span class="math inline"><em>V</em>(<em>ζ</em>)</span> back into <span class="math inline"><em>v</em><sub><em>z</em></sub> = <em>V</em>(<em>ζ</em>)<em>e</em><sup><em>i</em><em>n</em><em>ω</em><em>t</em></sup></span>, we get: <br /><span class="math display">$$\begin{aligned}
+    0 &amp;= A_n J_0(\Lambda_n) + \frac{i p_o a^2}{\mu \Omega_n^2} \\
+    A_n &amp;= -\frac{\frac{i p_o a^2}{\mu \Omega_n^2}}{J_0(\Lambda_n)} \\
+    V(\zeta) &amp;= \frac{i p_o a^2}{\mu \Omega_n^2}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right)\\
+    v_z^n(\zeta,t) &amp;= \frac{i p_o a^2}{\mu \Omega_n^2}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right) e^{i n \omega t}\end{aligned}$$</span><br /></p>
+<h4 id="flow-rate-1">Flow Rate</h4>
+<p><br /><span class="math display">$$\begin{aligned}
+    Q_n(t) &amp;= \int_0^a 2 \pi r v_{z}^n(r,t) dr\\
+           &amp;= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \int_0^{a} r \left(1 - \frac{J_0(\zeta)}{J_o(\Lambda)} \right) dr\end{aligned}$$</span><br /> We can substitute <span class="math inline">$r = \frac{a}{\Lambda} \zeta$</span> and <span class="math inline">$dr = \frac{a}{\Lambda} d \zeta$</span>. We can solve this integral by using the identity: <span class="math inline">∫<sub>0</sub><sup><em>a</em></sup><em>x</em><em>J</em><sub>0</sub>(<em>x</em>)<em>d</em><em>x</em> = <em>a</em><em>J</em><sub>1</sub>(<em>a</em>)</span> <br /><span class="math display">$$\begin{aligned}
+           &amp;= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{\Lambda_n^2 J_0(\Lambda_n)} \int_0^{\Lambda_n} \zeta \left(J_0(\Lambda_n) - J_0(\zeta) \right) d \zeta\\
+           &amp;= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{\Lambda_n^2 J_0(\Lambda_n)} \left(\int_0^{\Lambda_n} \zeta J_0(\Lambda_n) - \int_0^{\Lambda_n}\zeta J_0(\zeta) d \zeta \right)\\
+           &amp;= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{\Lambda_n^2 J_0(\Lambda_n)} \left(\frac{\Lambda_n^2}{2} J_0(\Lambda_n) - \Lambda_n J_1(\Lambda_n) \right)\\
+           &amp;= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{2} \left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)\\
+           &amp;= \frac{\pi p_o a^4}{\mu \Omega_n^2} \left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)e^{i n \omega t} \end{aligned}$$</span><br /></p>
+<h4 id="shear-stress-1">Shear Stress</h4>
+<p>We can use the constitutive relation <span class="math inline">$\tau_{rz} = 2 \mu \frac{1}{2}\left(    \frac{\partial v_z}{\partial r}+     \frac{\partial v_r}{\partial z}\right)$</span>, and the identity <span class="math inline">$\frac{d J_0(x)}{d x} = -J_1(x)$</span>: <br /><span class="math display">$$\begin{aligned}
+    \tau_n(t) &amp;= -\mu \left(    \frac{\partial v_n(r,t)}{\partial r}\right)_{r=a} e^{i n \omega t}\\
+              &amp;= -\frac{i p_o a^2}{\Omega_n^2}\left[\frac{d}{d r}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right)   \right]_{r=a} e^{i n \omega t}\\
+              &amp;= -\frac{i p_o a^2}{\Omega_n^2}\frac{\Lambda_n}{a}\left[\frac{d}{d \zeta}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right)   \right]_{\zeta=\Lambda_n} e^{i n \omega t}\\
+              &amp;= -\frac{i p_o a^2}{\Omega_n^2}\frac{\Lambda_n}{a}\left[\left(\frac{J_1(\zeta)}{J_0(\Lambda_n)} \right)   \right]_{\zeta=\Lambda_n} e^{i n \omega t}\\
+              &amp;= -\frac{i p_o a^2}{\Omega_n^2}\frac{\Lambda_n}{a}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}\\
+              &amp;= -\frac{p_o a}{\Lambda_n}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}\\\end{aligned}$$</span><br /> The last simplification was made since <span class="math inline">$\frac{i \Lambda}{\Omega^2} = \frac{1}{\Lambda}$</span></p>
+<h1 class="unnumbered" id="pulsatile">Pulsatile</h1>
+<h4 id="velocity-2">Velocity</h4>
+<p>Flow is driven by the following combined pressure gradient: <br /><span class="math display">$$\frac{d p}{d z} = -p_s - p_o \sum_{n=1}^N C_n e^{i (n \omega t + \phi_n)} \textrm{, Where $\omega = \frac{2 \pi}{T}$}$$</span><br /> Combining our steady and oscillatory velocity profiles, we get: <br /><span class="math display">$$v_{z,o}(r,t) = \frac{p_s a^2}{4 \mu} \left(1 - \left(\frac{r}{a}\right)^2\right) + p_o \displaystyle \sum_{n = 1}^{N} \frac{i C_n a^2}{\mu \Omega_n^2} \left(1 - \frac{J_0 (\zeta)}{J_0 (\Lambda_n)}\right) e^{i (\omega n t - \phi_n)}$$</span><br /></p>
+<h4 id="flow-rate-2">Flow Rate</h4>
+<p>Similarly, combining the steady and oscillatory portions of flow rate, we get: <br /><span class="math display">$$Q(t) = \frac{\pi a^4 p_s}{8 \mu} +\displaystyle \sum_{n=1}^N\frac{\pi p_n a^4}{\mu \Omega_n^2} \left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)e^{i n \omega t}$$</span><br /></p>
+<h4 id="wall-shear-stress">Wall shear stress</h4>
+<p>And finally, for wall shear stress we can similarly combine our steady and oscillatory profiles. <br /><span class="math display">$$\tau(t) = -\frac{a p_s}{2} +  \sum_{n=1}^{N}-\frac{p_n a}{\Lambda_n}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}\\
+$$</span><br /></p>
