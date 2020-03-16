@@ -1,2 +1,8 @@
 *.html
 figures/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.xdv
+*.gz
