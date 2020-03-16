@@ -284,7 +284,7 @@ def flow(a,omega,mu,rho,waves,dp_dz,animated):
     #Plot "tube" on velocity profile graph
     ax_v.plot([-250,250],[1,1])
     ax_v.plot([-250,250],[-1,-1])
-    ax_v.set_xlim([-250,250])
+    ax_v.set_xlim([-200,200])
 
     #TODO: set x_limit for all other axes
     times = np.linspace(0,omega,1000)
