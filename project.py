@@ -359,7 +359,7 @@ mu = .04
 c_n = np.array([7.58,5.41,1.52,.52,.83,.69,.26,.54,.27,.1])
 phi_n = np.array([-174,89,-22,-34,-127,135,152,44,-72,11])*np.pi/180
 
-#' Now we visualize pulsatile flow with the first set of results with $a = .65\cm$, $C = 50 \ dynes/cm^3$, and $D = 10\ dynes/cm^3$
+#' Now we visualize pulsatile flow with the first set of results with $a = .65 \ cm$, $C = 50 \ dynes/cm^3$, and $D = 10\ dynes/cm^3$
 #+ results='raw',fig = False
 a = .65 #.65 cm
 omegas = np.array([np.sqrt((n*rho*omega)/mu)*a for n in range(1,len(c_n)+1)])
@@ -368,7 +368,7 @@ waves = (10*c_n,phi_n,omegas,lambdas)
 dp_dz = 50
 flow(a,omega,mu,rho,waves,dp_dz,True)
 
-#' Now we visualize pulsatile flow with the first set of results with $a = .3\cm$, $C = 20 \ dynes/cm^3$, and $D = 30\ dynes/cm^3$
+#' Now we visualize pulsatile flow with the first set of results with $a = .3 \ cm$, $C = 20 \ dynes/cm^3$, and $D = 30\ dynes/cm^3$
 #+ results='raw',fig = False
 a = .3 #.65 cm
 omegas = np.array([np.sqrt((n*rho*omega)/mu)*a for n in range(1,len(c_n)+1)])
@@ -376,6 +376,3 @@ lambdas = ((1j - 1)/np.sqrt(2))*omegas
 waves = (30*c_n,phi_n,omegas,lambdas)
 dp_dz = 20
 flow(a,omega,mu,rho,waves,dp_dz,True)
-
-
-
