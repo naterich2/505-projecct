@@ -287,7 +287,8 @@ def flow(a,omega,mu,rho,waves,dp_dz,animated):
     ax_v.set_xlim([-200,200])
 
     #TODO: set x_limit for all other axes
-    times = np.linspace(0,omega,1000)
+    # 2 cycles
+    times = np.linspace(0,2*T,1000)
 
     # Set Omega, Lambda, Zeta, C_n values, Phi_n values, and the constant coefficient out front
     r_a = np.linspace(-1,1)
@@ -335,17 +336,23 @@ def flow(a,omega,mu,rho,waves,dp_dz,animated):
 
     def animate(t):
         v_unsteady = np.array([((1j*c_n*a**2)/(mu*om**2))*(1 - (jv(0,abs(r_a)*lam)/jv(0,lam)))* \
-                np.exp(1j*((n + 1)*omega*0.05*t + phi_n)) \
+                np.exp(1j*((n + 1)*omega*t + phi_n)) \
                 for n,[c_n,phi_n,om,lam] in enumerate(zip(c_ns,phi_ns,omegas,lambdas))])
         v_pulse = np.sum(v_unsteady,axis=0) + v_steady
-        p_follow.set_xdata([0.05*t, 0.05*t])
-        q_follow.set_xdata([0.05*t, 0.05*t])
-        t_follow.set_xdata([0.05*t, 0.05*t])
+        p_follow.set_xdata([t, t])
+        q_follow.set_xdata([t, t])
+        t_follow.set_xdata([t, t])
 
         line.set_xdata(v_pulse.real)  # update the data.
         return line,
+    def frames_gen():
+        # 100 frames from 0 to 2 periods.
+        T = 1/(omega/(2*np.pi))
+        for frame in np.linspace(0,2*T,100):
+            yield frame
+    # 100 frames from 0 to 2 periods.  100 frames with 75ms per frame we have a 7.5s long animation with a 1s delay at the end
     ani = animation.FuncAnimation(
-            fig, animate, interval=100, blit=False, frames=50,repeat_delay=500)
+            fig, animate, interval=75, blit=False, frames=frames_gen,repeat_delay=1000)
     vid = ani.to_html5_video()
     # Change width to 100% and remove height
     vid = re.sub(r'width="\d+"',r'width="100%"',vid)
@@ -353,7 +360,8 @@ def flow(a,omega,mu,rho,waves,dp_dz,animated):
     #display video
     display_html(vid,raw=True)
 #' We can first set our constants, namely $\rho = 1.06\ g/cm^3$, $\mu = 4 \cP$, $C_n$ values,  $\Phi_n$ values, and $T = 0.8$
-omega = 2*np.pi/.8 #1.25 hertz
+T = .8
+omega = 2*np.pi/T #1.25 hertz
 rho = 1.06 #1060 kg/m^2 == 1.06g/cm^3
 mu = .04
 c_n = np.array([7.58,5.41,1.52,.52,.83,.69,.26,.54,.27,.1])
